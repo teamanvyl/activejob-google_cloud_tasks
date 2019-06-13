@@ -1,18 +1,18 @@
 require 'activejob/google_cloud_tasks/config'
 require 'google/cloud/tasks'
-require 'google/cloud/tasks/v2beta3/cloud_tasks_client'
+require 'google/cloud/tasks/v2/cloud_tasks_client'
 
 module Activejob
   module GoogleCloudTasks
     class Adapter
-      def initialize(project:, location:, cloud_tasks_client: Google::Cloud::Tasks.new(version: :v2beta3))
+      def initialize(project:, location:, cloud_tasks_client: Google::Cloud::Tasks.new(version: :v2))
         @project = project
         @location = location
         @cloud_tasks_client = cloud_tasks_client
       end
 
       def enqueue(job, attributes = {})
-        formatted_parent = Google::Cloud::Tasks::V2beta3::CloudTasksClient.queue_path(@project, @location, job.queue_name)
+        formatted_parent = Google::Cloud::Tasks::V2::CloudTasksClient.queue_path(@project, @location, job.queue_name)
         relative_uri = "#{Activejob::GoogleCloudTasks::Config.path}/perform?job=#{job.class.to_s}&#{job.arguments.to_param}"
 
         task = {

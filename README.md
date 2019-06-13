@@ -67,7 +67,7 @@ Rails.application.config.active_job.queue_adapter = Activejob::GoogleCloudTasks:
   location: 'MY_GOOGLE_CLOUD_TASKS_LOCATION',
 
   cloud_tasks_client: Google::Cloud::Tasks.new(
-    version: :v2beta3,
+    version: :v2,
     credentials: 'path/to/keyfile.json'
   )
 )
@@ -78,7 +78,7 @@ Rails.application.config.active_job.queue_adapter = Activejob::GoogleCloudTasks:
 
 - `location` - (Required) The Location of the Cloud Tasks.
 
-- `cloud_tasks_client` - (Optional) The instance of `Google::Cloud::Tasks`. Please see [`Google::Cloud::Tasks.new`](https://googleapis.github.io/google-cloud-ruby/docs/google-cloud-tasks/latest/Google/Cloud/Tasks.html#new-class_method) for details. Default: `Google::Cloud::Tasks.new(version: :v2beta3)`
+- `cloud_tasks_client` - (Optional) The instance of `Google::Cloud::Tasks`. Please see [`Google::Cloud::Tasks.new`](https://googleapis.github.io/google-cloud-ruby/docs/google-cloud-tasks/latest/Google/Cloud/Tasks.html#new-class_method) for details. Default: `Google::Cloud::Tasks.new(version: :v2)`
 
 ### Config
 ```
